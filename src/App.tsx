@@ -1,18 +1,25 @@
-import React from 'react';
-import { ChakraProvider } from '@chakra-ui/react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import React from "react";
+import { ChakraProvider } from "@chakra-ui/react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { Layout, theme } from './components';
-import * as pages from './pages';
-
+import { Layout, theme } from "./components";
+import * as pages from "./pages";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <pages.Home />,
     errorElement: <pages.NotFound />,
-  }
-])
+  },
+  {
+    path: "/list",
+    element: <pages.List />,
+  },
+  {
+    path: "/view",
+    element: <pages.View />,
+  },
+]);
 
 export const App = () => {
   return (
@@ -22,4 +29,4 @@ export const App = () => {
       </Layout>
     </ChakraProvider>
   );
-}
+};
