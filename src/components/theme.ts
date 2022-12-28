@@ -1,6 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import { reset } from 'styled-reset';
+import { extendTheme } from '@chakra-ui/react';
 
-export const GlobalStyle = createGlobalStyle`
-  ${reset}
-`;
+export const theme = extendTheme({
+
+});
