@@ -1,7 +1,8 @@
 import React from 'react';
+import { ChakraProvider } from '@chakra-ui/react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import { GlobalStyle } from './components';
+import { Layout, theme } from './components';
 import * as pages from './pages';
 
 
@@ -14,8 +15,11 @@ const router = createBrowserRouter([
 ])
 
 export const App = () => {
-  return <>
-    <GlobalStyle />
-    <RouterProvider router={router} />
-  </>;
+  return (
+    <ChakraProvider theme={theme}>
+      <Layout>
+        <RouterProvider router={router} />
+      </Layout>
+    </ChakraProvider>
+  );
 }
