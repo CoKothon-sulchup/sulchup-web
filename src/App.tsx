@@ -11,6 +11,10 @@ const router = createBrowserRouter([
     path: '/',
     element: <pages.Home />,
     errorElement: <pages.NotFound />,
+  },
+  {
+    path: '/write',
+    element: <pages.Write />,
   }
 ])
 
