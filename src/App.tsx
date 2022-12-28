@@ -19,6 +19,10 @@ const router = createBrowserRouter([
     path: "/view",
     element: <pages.View />,
   },
+  {
+    path: "/write",
+    element: <pages.Write />,
+  },
 ]);
 
 export const App = () => {

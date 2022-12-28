@@ -8,11 +8,16 @@ export const Home = () => {
       display="flex"
       flexDirection="column"
       alignItems="center"
-      pt="48px"
-      px="32px"
+      pt={["32px", "48px"]}
+      px={["24px", "48px"]}
     >
-      <Heading as="h1">술첩</Heading>
-      <Box mt="24px" display="flex" flexDirection="row" alignItems="baseline">
+      <Box
+        mt={["16px", "24px"]}
+        display="flex"
+        flexDirection="row"
+        alignItems="baseline"
+        mr="auto"
+      >
         <Heading size="md">최근 기록</Heading>
         <Box display="flex" alignItems="center" cursor="pointer">
           <Text ml="12px">더 보기</Text>
@@ -25,6 +30,7 @@ export const Home = () => {
         flexWrap="wrap"
         justifyContent="space-around"
       >
+        <Box m="8px" w="128px" h="192px" bg="#ccc" />
         <Box m="8px" w="128px" h="192px" bg="#ccc" />
         <Box m="8px" w="128px" h="192px" bg="#ccc" />
         <Box m="8px" w="128px" h="192px" bg="#ccc" />
