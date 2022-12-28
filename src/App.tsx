@@ -23,6 +23,10 @@ const router = createBrowserRouter([
     path: "/write",
     element: <pages.Write />,
   },
+  {
+    path: "/search",
+    element: <pages.SearchPage />,
+  },
 ]);
 
 export const App = () => {
