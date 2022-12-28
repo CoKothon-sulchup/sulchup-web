@@ -1,5 +1,7 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import { GlobalStyle } from './components';
 import * as pages from './pages';
 
 
@@ -12,7 +14,8 @@ const router = createBrowserRouter([
 ])
 
 export const App = () => {
-  return (
+  return <>
+    <GlobalStyle />
     <RouterProvider router={router} />
-  );
+  </>;
 }
