@@ -1,9 +1,8 @@
 import React from "react";
-import { Box, Flex, Text, Square, Spacer } from "@chakra-ui/layout";
+import { Box, Flex, Text, Spacer } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/react";
-import { BsSearch } from "react-icons/bs";
 
-export const SearchPage = () => {
+export const Search = () => {
   const dummyList = [
     {
       id: 1,
@@ -153,7 +152,7 @@ export const SearchPage = () => {
             mb="8px"
           >
             <Box p={3} alignItems="center">
-              {it.picture.length == 0 ? (
+              {it.picture.length === 0 ? (
                 <Flex
                   w="130px"
                   h="130px"

@@ -25,7 +25,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/search",
-    element: <pages.SearchPage />,
+    element: <pages.Search />,
   },
 ]);
 
