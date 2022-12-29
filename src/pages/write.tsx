@@ -15,6 +15,7 @@ import {
   GridItem,
   Grid,
   Select,
+  Divider,
 } from "@chakra-ui/react";
 import { BsFillRecordCircleFill } from "react-icons/bs";
 
@@ -35,11 +36,12 @@ export const Write = () => {
   const names = ["마신 장소", "도수", "같이 마신 사람", "가격"];
 
   const gridItems = names.map((name) => (
-    <GridItem mb="20px">
-      <Heading size="md" mb="20px">
+    <GridItem mb="10px">
+      <Heading size="md" mb="10px">
         {name}
       </Heading>
-      <Input w="90%" />
+      <Input w="90%" border="none" />
+      <Divider border="2px" w="90%" />
     </GridItem>
   ));
 
@@ -95,27 +97,27 @@ export const Write = () => {
               <IconButton
                 colorScheme="Blue"
                 aria-label="star"
-                icon={<Image mx="5px" w="50px" src="images/star.svg" />}
+                icon={<Image mx="5px" w="50px" src="images/star_empty.svg" />}
               />
               <IconButton
                 colorScheme="Blue"
                 aria-label="star"
-                icon={<Image mx="5px" w="50px" src="images/star.svg" />}
+                icon={<Image mx="5px" w="50px" src="images/star_empty.svg" />}
               />
               <IconButton
                 colorScheme="Blue"
                 aria-label="star"
-                icon={<Image mx="5px" w="50px" src="images/star.svg" />}
+                icon={<Image mx="5px" w="50px" src="images/star_empty.svg" />}
               />
               <IconButton
                 colorScheme="Blue"
                 aria-label="star"
-                icon={<Image mx="5px" w="50px" src="images/star.svg" />}
+                icon={<Image mx="5px" w="50px" src="images/star_empty.svg" />}
               />
               <IconButton
                 colorScheme="Blue"
                 aria-label="star"
-                icon={<Image mx="5px" w="50px" src="images/star.svg" />}
+                icon={<Image mx="5px" w="50px" src="images/star_empty.svg" />}
               />
             </Flex>
           </Flex>
@@ -138,7 +140,7 @@ export const Write = () => {
             gap={2}
           >
             <GridItem mb="20px">
-              <Heading size="md" mb="20px">
+              <Heading size="md" mb="10px">
                 술 종류
               </Heading>
               <Select w="90%"></Select>
