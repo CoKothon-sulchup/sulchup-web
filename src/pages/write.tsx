@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { useEffect } from 'react';
 import {
   Flex,
   Heading,
@@ -7,20 +6,31 @@ import {
   Input,
   Image,
   Textarea,
+  Grid,
+  Select,
+  GridItem,
+  Divider,
   Tabs,
   Tab,
   TabList,
   TabPanels,
   TabPanel,
-  GridItem,
-  Grid,
-  Select,
-  Divider,
-} from "@chakra-ui/react";
-import { BsFillRecordCircleFill } from "react-icons/bs";
+} from '@chakra-ui/react';
+import { BsFillRecordCircleFill, BsFillStopCircleFill } from 'react-icons/bs';
+import { AiOutlineLeft } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
+import { useReactMediaRecorder } from 'react-media-recorder';
+
+interface RecordingIconProps {
+  recording: boolean;
+}
+
+const RecordingIcon = (props: RecordingIconProps) => {
+  return !props.recording ? <BsFillRecordCircleFill size={32} /> : <BsFillStopCircleFill size={32} color='#f00' />;
+};
 
 interface InputPanelContainerProps {
-  children: JSX.Element;
+  children?: React.ReactNode;
 }
 
 const InputPanelContainer = (props: InputPanelContainerProps) => {
@@ -45,24 +55,58 @@ export const Write = () => {
     </GridItem>
   ));
 
+  const onRecordingStart = () => {
+    console.log('recording started');
+  };
+
+  const onRecordingStop = () => {
+    console.log('recording stopped');
+  };
+
+  const navigate = useNavigate();
+  const {
+    status,
+    error,
+    mediaBlobUrl,
+    startRecording,
+    stopRecording,
+  } = useReactMediaRecorder({
+    audio: true,
+    askPermissionOnMount: true,
+    onStart: onRecordingStart,
+    onStop: onRecordingStop,
+  });
+
+  const handleBackClick = () => {
+    navigate(-1);
+  };
+
+  const toggleRecording = () => {
+    if (status === 'recording') {
+      stopRecording();
+    } else {
+      startRecording();
+    }
+  };
+
+  useEffect(() => {
+    if (error) {
+      console.log('recorder error:', error);
+    }
+  }, [error]);
+
   return (
-    <Flex
-      w="100%"
-      flexDirection="column"
-      alignItems="center"
-      pt="32px"
-      px={["24px", "60px"]}
-    >
-      <Heading mr="auto">술첩 기록</Heading>
-      <Flex mt="32px" w="100%">
-        <Image
-          w={["100px", "200px"]}
-          h={["100px", "200px"]}
-          src="https://via.placeholder.com/200"
-        />
-        <Flex ml={["24px", "32px"]} flex={1} flexDirection="column">
-          <Input placeholder="술 이름" />
-          <Input mt={["16px", "24px"]} placeholder="마신 날짜" />
+    <Flex w='100%' flexDirection='column' alignItems='center' pt='32px' px={['24px', '60px']}>
+      <Flex mr='auto' alignItems='center' cursor='pointer' onClick={handleBackClick}>
+        <AiOutlineLeft size={24} />
+      </Flex>
+      <Heading mt='32px' mr='auto'>술첩 기록</Heading>
+      <Flex mt='32px' w='100%'>
+        <Input type='file' />
+        {/* <Image w={['100px', '200px']} h={['100px', '200px']} src='https://via.placeholder.com/200' /> */}
+        <Flex ml={['24px', '32px']} flex={1} flexDirection='column'>
+          <Input placeholder='술 이름' />
+          <Input mt={['16px', '24px']} placeholder='마신 날짜' />
         </Flex>
       </Flex>
       <Flex mt="48px" w="100%" flexDirection="column">
@@ -80,12 +124,8 @@ export const Write = () => {
             </TabPanel>
             <TabPanel>
               <InputPanelContainer>
-                <IconButton
-                  my="24px"
-                  aria-label="record-button"
-                  size="2xl"
-                  icon={<BsFillRecordCircleFill />}
-                />
+                {!mediaBlobUrl && <IconButton my='24px' aria-label='record-button' onClick={toggleRecording} size='2xl' icon={<RecordingIcon recording={status === 'recording'} />} />}
+
               </InputPanelContainer>
             </TabPanel>
           </TabPanels>

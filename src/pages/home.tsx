@@ -1,19 +1,24 @@
 import React from "react";
-import { Box, Button, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Button, Heading, Text } from "@chakra-ui/react";
 import { HiChevronRight } from "react-icons/hi";
+import { useNavigate } from 'react-router-dom';
 
 export const Home = () => {
+  const navigate = useNavigate();
+
+  const handleWRiteClick = () => {
+    navigate('/write');
+  }
+
   return (
-    <Box
-      display="flex"
+    <Flex
       flexDirection="column"
       alignItems="center"
       pt={["32px", "48px"]}
       px={["24px", "48px"]}
     >
-      <Box
+      <Flex
         mt={["16px", "24px"]}
-        display="flex"
         flexDirection="row"
         alignItems="baseline"
         mr="auto"
@@ -23,7 +28,7 @@ export const Home = () => {
           <Text ml="12px">더 보기</Text>
           <HiChevronRight />
         </Box>
-      </Box>
+      </Flex>
       <Box
         mt="16px"
         display="flex"
@@ -35,9 +40,9 @@ export const Home = () => {
         <Box m="8px" w="128px" h="192px" bg="#ccc" />
         <Box m="8px" w="128px" h="192px" bg="#ccc" />
       </Box>
-      <Button mt="24px" size="lg">
+      <Button mt="24px" size="lg" onClick={handleWRiteClick}>
         기록 추가
       </Button>
-    </Box>
+    </Flex>
   );
 };
