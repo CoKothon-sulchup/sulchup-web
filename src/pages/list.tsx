@@ -5,9 +5,6 @@ import { Image } from "@chakra-ui/react";
 import {
   Tag,
   TagLabel,
-  TagLeftIcon,
-  TagRightIcon,
-  TagCloseButton,
 } from "@chakra-ui/react";
 
 export const List = () => {
