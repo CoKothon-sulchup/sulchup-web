@@ -1,6 +1,9 @@
-import React from "react";
-import { Box, Button, Flex, Spacer } from "@chakra-ui/react";
-import { Text } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Box, Heading, InputGroup, InputLeftElement, Flex, Spacer } from "@chakra-ui/react";
+import { Text, Input } from "@chakra-ui/react";
+import { useNavigate } from 'react-router-dom';
+import { AiOutlineLeft } from 'react-icons/ai';
+import { BsSearch } from 'react-icons/bs';
 
 import { dummyList } from '../data';
 
@@ -17,17 +20,56 @@ const drawHash = (list: string[]): string => {
 };
 
 export const Search = () => {
+  const navigate = useNavigate();
+  const [searchKey, setSEarchKey] = useState('');
+  const [result, setResult] = useState<typeof dummyList>([]);
+
+  const handleBackClick = () => {
+    navigate(-1);
+  }
+
+  const handleSearch = () => {
+    setResult(dummyList.filter((d) => d.name.startsWith(searchKey) || d.name.endsWith(searchKey)));
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+  const handleSEarchCHange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSEarchKey(e.target.value);
+  };
 
   return (
-    <Box margin="7">
-      <Button size="md" marginBottom={5}>
-        뒤로
-      </Button>
-      <Text fontSize="3xl" fontWeight="bold">
-        작성한 리스트
-      </Text>
-      <Box m={2} marginTop="5">
-        {dummyList.map((it) => (
+    <Flex pt='48px' px='32px' flexDirection='column'>
+      <Flex alignItems='center' cursor='pointer' onClick={handleBackClick}>
+        <AiOutlineLeft size={24} />
+      </Flex>
+      <Heading mt='32px'>술첩 검색하기</Heading>
+      <Flex flex={1} mt='24px' flexDirection='column'>
+        <InputGroup alignContent='center' justifyContent='center' mb='48px'>
+          <InputLeftElement
+            pointerEvents="none"
+            color="gray.300"
+            children={<BsSearch size={20} color="black" />}
+          />
+          <Input
+            size="lg"
+            focusBorderColor="black"
+            placeholder="검색어 입력"
+            value={searchKey}
+            onKeyDown={handleKeyDown}
+            onChange={handleSEarchCHange}
+            bg="#E2E2E2"
+          />
+        </InputGroup>
+        {result.length === 0 ? (
+          <Flex flex={1} justifyContent='center'>
+            <Text fontSize='18px'>최근 검색어가 없습니다.</Text>
+          </Flex>
+        ) : result.map((it) => (
           <Flex
             alignContent="flex-start"
             bgColor="#E2E2E2"
@@ -81,7 +123,7 @@ export const Search = () => {
             </Box>
           </Flex>
         ))}
-      </Box>
-    </Box>
+      </Flex>
+    </Flex>
   );
 };
