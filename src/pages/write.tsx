@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import {
   Flex,
   Heading,
+  Button,
   IconButton,
   Input,
   Image,
@@ -100,6 +101,7 @@ export const Write = () => {
       flexDirection="column"
       alignItems="center"
       pt="32px"
+      pb="48px"
       px={["24px", "60px"]}
     >
       <Flex
@@ -207,6 +209,7 @@ export const Write = () => {
             {gridItems}
           </Grid>
         </Flex>
+        <Button>기록</Button>
       </Flex>
     </Flex>
   );
