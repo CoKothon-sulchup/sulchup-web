@@ -4,7 +4,6 @@ import { Text, Input } from "@chakra-ui/react";
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineLeft } from 'react-icons/ai';
 import { BsSearch } from 'react-icons/bs';
-
 import { dummyList } from '../data';
 
 const drawStars = (n: number): string => {

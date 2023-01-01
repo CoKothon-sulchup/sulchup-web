@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import {
   Flex,
   Heading,
@@ -47,8 +47,16 @@ const InputPanelContainer = (props: InputPanelContainerProps) => {
   );
 };
 
+const today = new Date();
+
 export const Write = () => {
+  console.log(`date: ${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`)
+  // const [drinkDate, setDrinkDate] = useState(`${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`);
   const names = ["마신 장소", "도수", "같이 마신 사람", "가격"];
+
+  // const handleInputChange = (setState: React.Dispatch<React.SetStateAction<any>>) => (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   return setState(e.target.value);
+  // }
 
   const gridItems = names.map((name) => (
     <GridItem mb="10px">
@@ -61,28 +69,33 @@ export const Write = () => {
   ));
 
   const onRecordingStart = () => {
-    console.log("recording started");
+    console.log('recording started');
   };
 
   const onRecordingStop = () => {
-    console.log("recording stopped");
+    console.log('recording stopped');
   };
 
   const navigate = useNavigate();
-  const { status, error, mediaBlobUrl, startRecording, stopRecording } =
-    useReactMediaRecorder({
-      audio: true,
-      askPermissionOnMount: true,
-      onStart: onRecordingStart,
-      onStop: onRecordingStop,
-    });
+  const {
+    status,
+    error,
+    mediaBlobUrl,
+    startRecording,
+    stopRecording,
+  } = useReactMediaRecorder({
+    audio: true,
+    askPermissionOnMount: true,
+    onStart: onRecordingStart,
+    onStop: onRecordingStop,
+  });
 
   const handleBackClick = () => {
     navigate(-1);
   };
 
   const toggleRecording = () => {
-    if (status === "recording") {
+    if (status === 'recording') {
       stopRecording();
     } else {
       startRecording();
@@ -91,7 +104,7 @@ export const Write = () => {
 
   useEffect(() => {
     if (error) {
-      console.log("recorder error:", error);
+      console.log('recorder error:', error);
     }
   }, [error]);
 
